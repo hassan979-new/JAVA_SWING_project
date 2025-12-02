@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch4jConfig>
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar>C:\Users\HP\Desktop\bibliothéque\bin\Gestion_de_Bibliotheque.jar</jar>
+  <outfile>C:\Users\HP\Desktop\bibliothéque\bin\bibliotheque.exe</outfile>
+  <errTitle></errTitle>
+  <cmdLine></cmdLine>
+  <chdir>.</chdir>
+  <priority>normal</priority>
+  <downloadUrl></downloadUrl>
+  <supportUrl></supportUrl>
+  <stayAlive>false</stayAlive>
+  <restartOnCrash>false</restartOnCrash>
+  <manifest></manifest>
+  <icon></icon>
+  <classPath>
+    <mainClass>app.LogingMain</mainClass>
+    <cp>bin/lib/mysql-connector-java-5.1.23-bin.jar</cp>
+    <cp>bin/lib/jcalendar-1.4.jar</cp>
+    <cp>bin/lib/jcommon-1.0.23.jar</cp>
+    <cp>bin/lib/hamcrest-core-1.3.jar</cp>
+    <cp>bin/lib/jfreechart-1.0.19-experimental.jar</cp>
+    <cp>bin/lib/jfreechart-1.0.19-swt.jar</cp>
+    <cp>bin/lib/jfreechart-1.0.19.jar</cp>
+    <cp>bin/lib/jfreesvg-2.0.jar</cp>
+    <cp>bin/lib/junit-4.11.jar</cp>
+    <cp>bin/lib/orsoncharts-1.4-eval-nofx.jar</cp>
+    <cp>bin/lib/orsonpdf-1.6-eval.jar</cp>
+    <cp>bin/lib/servlet.jar</cp>
+    <cp>bin/lib/swtgraphics2d.jar</cp>
+  </classPath>
+  <jre>
+    <path>bin/jre</path>
+    <requiresJdk>false</requiresJdk>
+    <requires64Bit>false</requires64Bit>
+    <minVersion></minVersion>
+    <maxVersion></maxVersion>
+  </jre>
+</launch4jConfig>
