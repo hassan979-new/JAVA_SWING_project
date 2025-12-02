@@ -24,10 +24,21 @@ Mettre en place une application Java Swing permettant la gestion complète d’u
 - Sélection de dates avec JCalendar.
 
 ### 3. MCD (Modèle Conceptuel de Données)
-Voici le schéma conceptuel des principales entités et relations :
-Code :
+le schéma conceptuel des principales entités et relations :
 ```
-[Membre] ----------------< Emprunt >---------------- [Livre]
++-------------------+             +-------------------+             +-------------------+
+|      Membre       |             |      Emprunt      |             |       Livre       |
++-------------------+             +-------------------+             +-------------------+
+| idMembre (PK)     |<---------+  | idEmprunt (PK)    |  +-------->| idLivre (PK)      |
+| nom               |          |  | dateEmprunt       |             | titre             |
+| email             |          |  | dateRetour        |             | auteur            |
+| dateInscription   |          |  | idMembre (FK)     |             | genre             |
++-------------------+          |  | idLivre (FK)      |             | anneePublication  |
+                               |  +-------------------+             +-------------------+
+                               |
+Relation : Un membre peut avoir plusieurs emprunts
+Relation : Un livre peut être emprunté plusieurs fois
+
 ```
 - Membre(id, nom, email, dateInscription)
 - Livre(id, titre, auteur, genre, anneePublication)
@@ -54,8 +65,52 @@ UI (app) : interfaces Swing (mainApp, Livre_Frame, Membre_Frame, Emprunt_Frame, 
 - Utilitaires (util) : ConnexionSingleton (connexion DB), Hash (sécurité).
 
 - Lib (lib) : JCalendar et JFreeChart.
+### Exécution du programme (version installée)
+Installation
+
+- Ouvrir le dossier setup/.
+
+- Lancer le fichier setup_bibliotheque.exe (créé avec Inno Setup).
+
+- Suivre les étapes de l’assistant d’installation pour installer l’application sur ton PC.
+
+Base de données
+
+- Démarrer XAMPP et activer Apache et MySQL.
+
+- Ouvrir phpMyAdmin via http://localhost/phpmyadmin.
+
+- Créer une base de données nommée bibliotheque.
+
+- Importer le fichier SQL situé dans le dossier :
+
+```
+/base_des_donnee/bibliotheque.sql 
+```
+
+- Vérifier que la classe ConnexionSingleton pointe bien vers :
+```
+Serveur : localhost
+
+Base : bibliotheque
+
+Utilisateur : root
+
+Mot de passe : (vide par défaut sous XAMPP)
+```
+Lancement
+
+- Après installation, un raccourci vers l’application est créé sur le bureau ou dans le menu démarrer.
+
+- Double-cliquer pour lancer l’application.
+
+- La fenêtre de connexion (LogingMain) s’ouvre.
+
+- Se connecter avec admin et mot de pass admin123.
 
 ### Vidéo de démonstration
+
+- https://github.com/user-attachments/assets/aea0e26e-5671-4819-a91d-816ea75985d8
 
 
 ##  Author
