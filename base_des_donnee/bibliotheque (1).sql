@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 02 déc. 2025 à 23:30
+-- Généré le : dim. 07 déc. 2025 à 23:09
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -28,7 +28,6 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `emprunt` (
-  `id` int(11) NOT NULL,
   `livre_id` int(11) NOT NULL,
   `membre_id` int(11) NOT NULL,
   `dateEmprunt` date NOT NULL,
@@ -39,14 +38,15 @@ CREATE TABLE `emprunt` (
 -- Déchargement des données de la table `emprunt`
 --
 
-INSERT INTO `emprunt` (`id`, `livre_id`, `membre_id`, `dateEmprunt`, `dateRetour`) VALUES
-(2, 2, 1, '2025-11-29', '2025-11-29'),
-(7, 2, 2, '2025-12-03', '2025-12-30'),
-(8, 2, 2, '2025-12-02', '2025-12-01'),
-(9, 12, 1, '2025-12-05', '2025-12-12'),
-(11, 2, 1, '2025-08-05', '2025-12-11'),
-(13, 2, 2, '2025-08-16', '2025-12-11'),
-(14, 16, 8, '2025-12-03', '2025-12-25');
+INSERT INTO `emprunt` (`livre_id`, `membre_id`, `dateEmprunt`, `dateRetour`) VALUES
+(2, 1, '2025-08-05', '2025-12-11'),
+(2, 1, '2025-11-29', '2025-11-29'),
+(2, 1, '2025-12-03', '2025-12-11'),
+(2, 2, '2025-08-16', '2025-12-11'),
+(2, 2, '2025-12-02', '2025-12-01'),
+(2, 2, '2025-12-03', '2025-12-30'),
+(2, 7, '2025-12-04', '2025-12-19'),
+(12, 1, '2025-12-05', '2025-12-12');
 
 -- --------------------------------------------------------
 
@@ -69,9 +69,7 @@ CREATE TABLE `livre` (
 INSERT INTO `livre` (`id`, `titre`, `auteur`, `genre`, `anneePublication`) VALUES
 (2, 'livre', 'hassan', 'nouvel', '2025-11-29'),
 (12, 'Survivle log book', 'Hassan', 'Sci-fi', '2018-12-20'),
-(14, 'Les Misérables', 'Victor Hugo', 'Roman', '1862-01-01'),
-(15, 'L\'Étranger', 'Albert Camus', 'Philosophie', '1942-01-01'),
-(16, 'Le Petit Prince', 'Antoine de Saint-Exupéry', 'Conte', '1943-01-01');
+(14, 'open', 'Agouram', 'Romun', '2025-12-05');
 
 -- --------------------------------------------------------
 
@@ -112,10 +110,7 @@ CREATE TABLE `membre` (
 INSERT INTO `membre` (`id`, `nom`, `email`, `dateInscription`) VALUES
 (1, 'Hassan', 'hassan@gmail.com', '2025-11-25'),
 (2, 'oussam', 'oussama@gmail.com', '2025-11-07'),
-(8, 'Hassan El Idrissi', 'hassan@example.com', '2025-01-15'),
-(9, 'Fatima Zahra', 'fatima@example.com', '2025-02-01'),
-(10, 'Youssef Benali', 'youssef@example.com', '2025-02-10'),
-(11, 'taha', 'taha@gmail.com', '2025-11-07');
+(7, 'agouram', 'agouram@gamil.com', '2004-06-29');
 
 --
 -- Index pour les tables déchargées
@@ -125,7 +120,8 @@ INSERT INTO `membre` (`id`, `nom`, `email`, `dateInscription`) VALUES
 -- Index pour la table `emprunt`
 --
 ALTER TABLE `emprunt`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`livre_id`,`membre_id`,`dateEmprunt`),
+  ADD KEY `fk_emprunt_membre` (`membre_id`);
 
 --
 -- Index pour la table `livre`
@@ -150,16 +146,10 @@ ALTER TABLE `membre`
 --
 
 --
--- AUTO_INCREMENT pour la table `emprunt`
---
-ALTER TABLE `emprunt`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
---
 -- AUTO_INCREMENT pour la table `livre`
 --
 ALTER TABLE `livre`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT pour la table `login`
@@ -171,7 +161,18 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT pour la table `membre`
 --
 ALTER TABLE `membre`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `emprunt`
+--
+ALTER TABLE `emprunt`
+  ADD CONSTRAINT `fk_emprunt_livre` FOREIGN KEY (`livre_id`) REFERENCES `livre` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_emprunt_membre` FOREIGN KEY (`membre_id`) REFERENCES `membre` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
