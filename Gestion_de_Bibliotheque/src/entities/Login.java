@@ -10,6 +10,7 @@ package entities;
  * @author HP
  */
 public class Login {
+
     private int id;
     private String nom;
     private String password;
@@ -48,6 +49,5 @@ public class Login {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    
+
 }

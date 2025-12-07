@@ -8,7 +8,10 @@ package dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Month;
+import java.time.format.TextStyle;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import util.ConnexionSingleton;
 
@@ -18,17 +21,21 @@ import util.ConnexionSingleton;
  */
 public class GraphDao {
 
-    public Map<Integer, Integer> getEmpruntMois() {
-        Map<Integer, Integer> data = new HashMap<>();
+    public Map<String, Integer> getEmpruntMois() {
+        Map<String, Integer> data = new HashMap<>();
 
-        String req = "SELECT MONTH(dateEmprunt) AS m, COUNT(*) AS total FROM emprunt GROUP BY MONTH(dateEmprunt) ORDER BY m";
+        String req = "SELECT YEAR(dateEmprunt) AS y, MONTH(dateEmprunt) AS m, COUNT(*) AS total "
+               + "FROM emprunt GROUP BY YEAR(dateEmprunt), MONTH(dateEmprunt) ORDER BY y, m";
         try (PreparedStatement ps = ConnexionSingleton.getInstace().getConnection().prepareStatement(req)) {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
+                int annee = rs.getInt("y");
                 int mois = rs.getInt("m");
                 int total = rs.getInt("total");
-                data.put(mois, total);
+                String moisString = Month.of(mois).getDisplayName(TextStyle.FULL, Locale.FRENCH);
+                String label = moisString + " " + annee;
+                data.put(label, total);
             }
         } catch (SQLException e) {
             System.err.println("Error: " + e.getMessage());

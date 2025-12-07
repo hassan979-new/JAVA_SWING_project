@@ -3,11 +3,26 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/HP/Desktop/JDBC/projet/Gestion_de_Bibliotheque/src/app/mainApp.java</file>
+            <file>file:/C:/Users/HP/Desktop/JDBC/projet/Gestion_de_Bibliotheque/src/app/Graph_frame.java</file>
+            <file>file:/C:/Users/HP/Desktop/JDBC/projet/Gestion_de_Bibliotheque/src/dao/MembreDao.java</file>
             <file>file:/C:/Users/HP/Desktop/JDBC/projet/Gestion_de_Bibliotheque/src/app/Emprunt_Frame.java</file>
+            <file>file:/C:/Users/HP/Desktop/JDBC/projet/Gestion_de_Bibliotheque/src/entities/Membre.java</file>
+            <file>file:/C:/Users/HP/Desktop/JDBC/projet/Gestion_de_Bibliotheque/src/app/LogingMain.java</file>
+            <file>file:/C:/Users/HP/Desktop/JDBC/projet/Gestion_de_Bibliotheque/src/app/Login.java</file>
+            <file>file:/C:/Users/HP/Desktop/JDBC/projet/Gestion_de_Bibliotheque/src/entities/Livre.java</file>
+            <file>file:/C:/Users/HP/Desktop/JDBC/projet/Gestion_de_Bibliotheque/src/app/Livre_Frame.java</file>
+            <file>file:/C:/Users/HP/Desktop/JDBC/projet/Gestion_de_Bibliotheque/src/dao/IDao.java</file>
+            <file>file:/C:/Users/HP/Desktop/JDBC/projet/Gestion_de_Bibliotheque/src/dao/LoginDao.java</file>
+            <file>file:/C:/Users/HP/Desktop/JDBC/projet/Gestion_de_Bibliotheque/src/service/MembreService.java</file>
+            <file>file:/C:/Users/HP/Desktop/JDBC/projet/Gestion_de_Bibliotheque/src/entities/Emprunt.java</file>
+            <file>file:/C:/Users/HP/Desktop/JDBC/projet/Gestion_de_Bibliotheque/src/dao/GraphDao.java</file>
+            <file>file:/C:/Users/HP/Desktop/JDBC/projet/Gestion_de_Bibliotheque/src/app/mainApp.java</file>
+            <file>file:/C:/Users/HP/Desktop/JDBC/projet/Gestion_de_Bibliotheque/src/dao/LivreDao.java</file>
             <file>file:/C:/Users/HP/Desktop/JDBC/projet/Gestion_de_Bibliotheque/src/dao/EmpruntDao.java</file>
+            <file>file:/C:/Users/HP/Desktop/JDBC/projet/Gestion_de_Bibliotheque/src/service/LivreService.java</file>
             <file>file:/C:/Users/HP/Desktop/JDBC/projet/Gestion_de_Bibliotheque/src/app/Membre_Frame.java</file>
             <file>file:/C:/Users/HP/Desktop/JDBC/projet/Gestion_de_Bibliotheque/src/service/EmpruntService.java</file>
+            <file>file:/C:/Users/HP/Desktop/JDBC/projet/Gestion_de_Bibliotheque/src/entities/Login.java</file>
         </group>
     </open-files>
 </project-private>

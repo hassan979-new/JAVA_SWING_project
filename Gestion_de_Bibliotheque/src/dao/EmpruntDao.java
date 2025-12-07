@@ -20,10 +20,10 @@ import util.ConnexionSingleton;
  * @author HP
  */
 public class EmpruntDao implements IDao<Emprunt> {
-
+    
     private final LivreDao lvrDao = new LivreDao();
     private final MembreDao mbrDao = new MembreDao();
-
+    
     @Override
     public boolean insert(Emprunt o) throws Exception {
         String sql = "INSERT INTO Emprunt(livre_id,membre_id,dateEmprunt, dateRetour) VALUES (?,?,?,?)";
@@ -39,7 +39,7 @@ public class EmpruntDao implements IDao<Emprunt> {
             return false;
         }
     }
-
+    
     @Override
     public boolean update(Emprunt o) throws Exception {
         String sql = "UPDATE Emprunt SET livre_id=?, membre_id=?, dateEmprunt=?,dateRetour=? WHERE id = ?";
@@ -55,12 +55,14 @@ public class EmpruntDao implements IDao<Emprunt> {
             return false;
         }
     }
-
+    
     @Override
-    public boolean delete(int id) throws Exception {
-        String sql = "DELETE FROM Emprunt WHERE id=?";
+    public boolean delete(Emprunt o) throws Exception {
+        String sql = "DELETE FROM Emprunt WHERE livre_id = ? AND membre_id = ? AND dateEmprunt = ?";
         try (PreparedStatement ps = ConnexionSingleton.getInstace().getConnection().prepareStatement(sql)) {
-            ps.setInt(1, id);
+            ps.setInt(1, o.getLivre().getId());
+            ps.setInt(2, o.getMembre().getId());
+            ps.setDate(3, new java.sql.Date(o.getDateEmprunt().getTime()));
             ps.executeUpdate();
             return true;
         } catch (SQLException e) {
@@ -68,7 +70,7 @@ public class EmpruntDao implements IDao<Emprunt> {
             return false;
         }
     }
-
+    
     @Override
     public List<Emprunt> findAll() throws Exception {
         String sql = "SELECT * FROM Emprunt";
@@ -76,32 +78,34 @@ public class EmpruntDao implements IDao<Emprunt> {
         try (PreparedStatement ps = ConnexionSingleton.getInstace().getConnection().prepareStatement(sql)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Livre l = lvrDao.findById(rs.getInt("livre_id"));
-                Membre m = mbrDao.findById(rs.getInt("membre_id"));
-                list.add(new Emprunt(rs.getInt("id"), l, m, rs.getDate("dateEmprunt"), rs.getDate("dateRetour")));
+                Livre l = lvrDao.findById(new Livre(rs.getInt("livre_id"), "", "", "", null));
+                Membre m = mbrDao.findById(new Membre(rs.getInt("membre_id"), "", "", null));
+                list.add(new Emprunt(l, m, rs.getDate("dateEmprunt"), rs.getDate("dateRetour")));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return list;
     }
-
+    
     @Override
-    public Emprunt findById(int id) throws Exception {
-        String sql = "SELECT * FROM Emprunt WHERE id = ?";
+    public Emprunt findById(Emprunt e) throws Exception {
+        String sql = "SELECT * FROM Emprunt WHERE livre_id = ? AND membre_id = ? AND dateEmprunt = ?";
         try (PreparedStatement ps = ConnexionSingleton.getInstace().getConnection().prepareStatement(sql)) {
-            ps.setInt(1, id);
+            ps.setInt(1, e.getLivre().getId());
+            ps.setInt(2, e.getMembre().getId());
+            ps.setDate(3, new java.sql.Date(e.getDateEmprunt().getTime()));
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Livre l = lvrDao.findById(rs.getInt("livre_id"));
-                Membre m = mbrDao.findById(rs.getInt("membre_id"));
-                return new Emprunt(rs.getInt("id"), l, m, rs.getDate("dateEmprunt"), rs.getDate("dateRetour"));
+                Livre l = lvrDao.findById(new Livre(rs.getInt("livre_id"), "", "", "", null));
+                Membre m = mbrDao.findById(new Membre(rs.getInt("membre_id"), "", "", null));
+                return new Emprunt(l, m, rs.getDate("dateEmprunt"), rs.getDate("dateRetour"));
             }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            
         }
         return null;
     }
-
+    
 }

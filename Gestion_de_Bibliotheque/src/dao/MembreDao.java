@@ -51,10 +51,10 @@ public class MembreDao implements IDao<Membre> {
     }
 
     @Override
-    public boolean delete(int id) throws Exception {
+    public boolean delete(Membre m) throws Exception {
         String sql = "DELETE FROM Membre WHERE id = ?";
         try (PreparedStatement ps = ConnexionSingleton.getInstace().getConnection().prepareStatement(sql)) {
-            ps.setInt(1, id);
+            ps.setInt(1, m.getId());
             ps.executeUpdate();
             return true;
         } catch (SQLException e) {
@@ -79,12 +79,12 @@ public class MembreDao implements IDao<Membre> {
     }
 
     @Override
-    public Membre findById(int id) throws Exception {
+    public Membre findById(Membre m) throws Exception {
         String sql = "SELECT * FROM Membre WHERE id = ?";
-        try(PreparedStatement ps = ConnexionSingleton.getInstace().getConnection().prepareStatement(sql)){
-            ps.setInt(1, id);
+        try (PreparedStatement ps = ConnexionSingleton.getInstace().getConnection().prepareStatement(sql)) {
+            ps.setInt(1, m.getId());
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 return new Membre(rs.getInt("id"), rs.getString("nom"), rs.getString("email"), rs.getDate("DateInscription"));
             }
         }

@@ -47,11 +47,11 @@ public class Graph_frame extends javax.swing.JInternalFrame {
     private CategoryDataset creatDataset() {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         
-        Map<Integer, Integer> stats = dao.getEmpruntMois();
-        for (Map.Entry<Integer, Integer> entry : stats.entrySet()) {
-            int mois = entry.getKey();
+        Map<String, Integer> stats = dao.getEmpruntMois();
+        for (Map.Entry<String, Integer> entry : stats.entrySet()) {
+            String label = entry.getKey();
             int total = entry.getValue();
-            dataset.addValue(total, "Les livres empruntés", "Mois" + mois);
+            dataset.addValue(total, "Les livres empruntés",  label);
         }
         return dataset;
     }
@@ -81,7 +81,7 @@ public class Graph_frame extends javax.swing.JInternalFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
+            .addGap(0, 587, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

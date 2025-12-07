@@ -13,7 +13,6 @@ import java.util.Date;
  */
 public class Emprunt {
 
-    private int id;
     private Livre livre;
     private Membre membre;
     private Date dateEmprunt;
@@ -24,18 +23,6 @@ public class Emprunt {
         this.membre = membre;
         this.dateEmprunt = dateEmprunt;
         this.dateRetour = dateRetour;
-    }
-
-    public Emprunt(int id, Livre livre, Membre membre, Date dateEmprunt, Date dateRetour) {
-        this.id = id;
-        this.livre = livre;
-        this.membre = membre;
-        this.dateEmprunt = dateEmprunt;
-        this.dateRetour = dateRetour;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public Livre getLivre() {
@@ -70,5 +57,4 @@ public class Emprunt {
         this.dateRetour = dateRetour;
     }
 
-    
 }

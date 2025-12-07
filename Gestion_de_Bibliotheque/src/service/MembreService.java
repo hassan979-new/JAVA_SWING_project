@@ -21,7 +21,7 @@ public class MembreService {
     private EmpruntDao emDao = new EmpruntDao();
 
     public Membre getMembre(Membre m) throws Exception {
-        return dao.findById(m.getId());
+        return dao.findById(m);
     }
 
     public List<Membre> listMembres() throws Exception {
@@ -39,11 +39,11 @@ public class MembreService {
 
     public boolean deleteMembre(Membre m) throws Exception {
         List<Emprunt> emprunts = emDao.findAll();
-        for(Emprunt e : emprunts){
-            if(e.getMembre().getId() == m.getId()){
+        for (Emprunt e : emprunts) {
+            if (e.getMembre().getId() == m.getId()) {
                 throw new Exception("Impossible de supprimer ce membre : Il possede un livre!");
             }
         }
-        return dao.delete(m.getId());
+        return dao.delete(m);
     }
 }

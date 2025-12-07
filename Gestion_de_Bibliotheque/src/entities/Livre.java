@@ -75,5 +75,4 @@ public class Livre {
         return titre;
     }
 
-    
 }

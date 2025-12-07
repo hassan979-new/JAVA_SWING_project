@@ -64,5 +64,4 @@ public class Membre {
         return nom;
     }
 
-    
 }

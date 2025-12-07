@@ -84,11 +84,12 @@ public class Livre_Frame extends javax.swing.JInternalFrame {
         mod_btn = new javax.swing.JButton();
         date = new com.toedter.calendar.JDateChooser();
         jPanel3 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        livreTable = new javax.swing.JTable();
         supp_btn = new javax.swing.JButton();
         filtre_list = new javax.swing.JComboBox();
         filter_txt = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        livreTable = new javax.swing.JTable();
 
         menu1.setLabel("File");
         menuBar1.add(menu1);
@@ -100,7 +101,9 @@ public class Livre_Frame extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
+        setTitle("Gestion des livres");
 
+        jPanel1.setBackground(new java.awt.Color(102, 204, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Information", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
         jLabel1.setText("Titre");
@@ -117,6 +120,13 @@ public class Livre_Frame extends javax.swing.JInternalFrame {
             }
         });
 
+        auteur_txt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                auteur_txtActionPerformed(evt);
+            }
+        });
+
+        ajou_btn.setBackground(new java.awt.Color(0, 255, 0));
         ajou_btn.setText("Ajouter");
         ajou_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,6 +134,7 @@ public class Livre_Frame extends javax.swing.JInternalFrame {
             }
         });
 
+        mod_btn.setBackground(new java.awt.Color(255, 255, 0));
         mod_btn.setText("Modifier");
         mod_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,7 +147,7 @@ public class Livre_Frame extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -179,7 +190,26 @@ public class Livre_Frame extends javax.swing.JInternalFrame {
                 .addGap(62, 62, 62))
         );
 
+        jPanel3.setBackground(new java.awt.Color(102, 204, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "List des livres", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+
+        supp_btn.setBackground(new java.awt.Color(255, 0, 0));
+        supp_btn.setForeground(new java.awt.Color(255, 255, 255));
+        supp_btn.setText("Supprimer");
+        supp_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                supp_btnActionPerformed(evt);
+            }
+        });
+
+        filtre_list.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<par defaut>", "par genre", "par auteur" }));
+        filtre_list.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filtre_listActionPerformed(evt);
+            }
+        });
+
+        jScrollPane2.setBackground(new java.awt.Color(102, 204, 255));
 
         livreTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -196,45 +226,33 @@ public class Livre_Frame extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(livreTable);
 
-        supp_btn.setText("Supprimer");
-        supp_btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                supp_btnActionPerformed(evt);
-            }
-        });
-
-        filtre_list.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<par defaut>", "par genre", "par auteur" }));
-        filtre_list.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                filtre_listActionPerformed(evt);
-            }
-        });
+        jScrollPane2.setViewportView(jScrollPane1);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(0, 0, 0)
                 .addComponent(filtre_list, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(filter_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
                 .addComponent(supp_btn)
-                .addContainerGap())
+                .addGap(0, 0, 0))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(supp_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(filtre_list, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(filter_txt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGap(0, 0, 0))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -243,7 +261,7 @@ public class Livre_Frame extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -354,6 +372,10 @@ public class Livre_Frame extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_filtre_listActionPerformed
 
+    private void auteur_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_auteur_txtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_auteur_txtActionPerformed
+
     public void filtreGenre() throws Exception {
         String genre = filter_txt.getText().trim();
 
@@ -444,6 +466,7 @@ public class Livre_Frame extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable livreTable;
     private java.awt.Menu menu1;
     private java.awt.Menu menu2;

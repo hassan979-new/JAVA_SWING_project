@@ -56,10 +56,10 @@ public class LivreDao implements IDao<Livre> {
     }
 
     @Override
-    public boolean delete(int id) throws Exception {
+    public boolean delete(Livre l) throws Exception {
         String sql = "DELETE FROM Livre WHERE id=?";
         try (PreparedStatement ps = ConnexionSingleton.getInstace().getConnection().prepareStatement(sql)) {
-            ps.setInt(1, id);
+            ps.setInt(1, l.getId());
             ps.executeUpdate();
             return true;
         } catch (SQLException e) {
@@ -84,10 +84,10 @@ public class LivreDao implements IDao<Livre> {
     }
 
     @Override
-    public Livre findById(int id) throws Exception {
+    public Livre findById(Livre l) throws Exception {
         String sql = "SELECT * FROM Livre WHERE id = ?";
         try (PreparedStatement ps = ConnexionSingleton.getInstace().getConnection().prepareStatement(sql)) {
-            ps.setInt(1, id);
+            ps.setInt(1, l.getId());
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 return new Livre(rs.getInt("id"), rs.getString("titre"), rs.getString("auteur"), rs.getString("genre"), rs.getDate("anneePublication"));

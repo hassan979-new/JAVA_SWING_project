@@ -23,7 +23,7 @@ public class LivreService {
     private EmpruntDao emDao = new EmpruntDao();
 
     public Livre getLivre(Livre l) throws Exception {
-        return dao.findById(l.getId());
+        return dao.findById(l);
     }
 
     public List<Livre> listLivres() throws Exception {
@@ -41,12 +41,12 @@ public class LivreService {
 
     public boolean deleteLivre(Livre l) throws Exception {
         List<Emprunt> emprunts = emDao.findAll();
-        for(Emprunt e : emprunts){
-            if(e.getLivre().getId() == l.getId()){
+        for (Emprunt e : emprunts) {
+            if (e.getLivre().getId() == l.getId()) {
                 throw new Exception("Impossible de supprimer ce livre: il est emprunte!");
             }
         }
-        return dao.delete(l.getId());
+        return dao.delete(l);
     }
 
     public List<Livre> filtreGenre(String genre) throws Exception {

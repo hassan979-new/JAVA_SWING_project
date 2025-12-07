@@ -29,7 +29,7 @@ public class EmpruntService {
     }
 
     public boolean retourLivre(Emprunt e) throws Exception {
-        return dao.delete(e.getId());
+        return dao.delete(e);
     }
 
     public List<Livre> livresEmpruntes() throws Exception {
@@ -46,7 +46,8 @@ public class EmpruntService {
         List<Emprunt> listEmprunts = dao.findAll();
         List<Livre> listLivres = new ArrayList<>();
         for (Emprunt e : listEmprunts) {
-            System.out.println("Null member in Emprunt ID: " + e.getId());
+//            I don't remember why I add this debug:
+//            System.out.println("Null member in Emprunt ID: " + e.getId());
             if (e.getDateRetour().before(now)) {
                 listLivres.add(e.getLivre());
             }

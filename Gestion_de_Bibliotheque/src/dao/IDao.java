@@ -18,9 +18,9 @@ public interface IDao<T> {
 
     public boolean update(T o) throws Exception;
 
-    public boolean delete(int id) throws Exception;
+    public boolean delete(T o) throws Exception;
 
     public List<T> findAll() throws Exception;
 
-    public T findById(int id) throws Exception;
+    public T findById(T o) throws Exception;
 }
